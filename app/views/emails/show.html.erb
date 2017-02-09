@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<div>
+<p>
+  <strong>Email:</strong>
+  <%= @email.email %>
+</p>
+
+  <%= link_to 'Add message', new_message_path(email_id: @email.id)%>
+
+</div>
+
+<ul>
+  <% @email.messages.each do |message| %>
+      <li>
+        <%= message.subject %>
+        <%= message.phone %>
+        <%= message.message %>
+        <%= message.name %>
+        <%= message.surname %>
+        <td><%= link_to 'Show', message %></td>
+        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Edit', edit_email_path(@email) %> |
+<%= link_to 'Back', site_path(@email.site_id)%>

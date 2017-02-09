@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<div>
+<p>
+  <strong>Name:</strong>
+  <%= @site.name %>
+
+  <strong>Url:</strong>
+  <%= @site.url %>
+
+  <strong>Email:</strong>
+  <%= @site.email %>
+
+  <strong>Password:</strong>
+  <%= @site.password %>
+</p>
+
+  <%= link_to 'Add email', new_email_path(site_id: @site.id)%>
+
+</div>
+
+<ul>
+  <% @site.emails.each do |email| %>
+      <li>
+        <%= link_to email.email, email %>
+        <td><%= link_to 'Destroy', email, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Edit', edit_site_path(@site) %> |
+<%= link_to 'Back', user_path(@site.user_id)%>
