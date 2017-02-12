@@ -1,32 +1,44 @@
 <p id="notice"><%= notice %></p>
+<%= link_to 'Home', user_path(@site.user_id) %> |
+<%= link_to 'Log out', destroy_user_session_path, :method => :delete %>
+<h1>Sites</h1>
+<style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 15px;
+  }
+</style>
 
 <div>
 <p>
-  <strong>Name:</strong>
-  <%= @site.name %>
 
-  <strong>Url:</strong>
-  <%= @site.url %>
+  <h3>Name:  <%= @site.name %></h3>
 
-  <strong>Email:</strong>
-  <%= @site.email %>
+  <h3>Url:  <%= @site.url %></h3>
 
-  <strong>Password:</strong>
-  <%= @site.password %>
+  <h3>Email:  <%= @site.email %></h3>
 </p>
-
+</div>
+<hr>
   <%= link_to 'Add email', new_email_path(site_id: @site.id)%>
 
-</div>
-
-<ul>
+<table style="width:100%">
+  <tr>
+    <th>Email</th>
+    <th>Write</th>
+    <th>Destroy</th>
+  </tr>
   <% @site.emails.each do |email| %>
-      <li>
-        <%= link_to email.email, email %>
+      <tr>
+        <td><%= link_to email.email, email %></td>
+        <td></td>
         <td><%= link_to 'Destroy', email, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </li>
+      </tr>
   <% end %>
-</ul>
+</table>
 
 <%= link_to 'Edit', edit_site_path(@site) %> |
 <%= link_to 'Back', user_path(@site.user_id)%>

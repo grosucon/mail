@@ -1,6 +1,10 @@
 class SitesController < ApplicationController
   before_action :set_site, only: [:show, :edit, :update, :destroy]
 
+  before_filter :authenticate_user!
+
+  before_action :admin_permission, only: :index
+
   # GET /sites
   # GET /sites.json
   def index
