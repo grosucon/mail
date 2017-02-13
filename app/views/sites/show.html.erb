@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
-<%= link_to 'Home', user_path(@site.user_id) %> |
-<%= link_to 'Log out', destroy_user_session_path, :method => :delete %>
-<h1>Sites</h1>
+<%= link_to 'Home', user_path(@site.user_id), class: 'btn btn-primary' %> |
+<%= link_to 'Log out', destroy_user_session_path, :method => :delete, class: 'btn btn-primary' %>
+<h1>Emails_to_Site</h1>
 <style>
   table, th, td {
     border: 1px solid black;
@@ -12,33 +12,30 @@
   }
 </style>
 
-<div>
-<p>
-
   <h3>Name:  <%= @site.name %></h3>
 
   <h3>Url:  <%= @site.url %></h3>
 
   <h3>Email:  <%= @site.email %></h3>
-</p>
-</div>
+
 <hr>
-  <%= link_to 'Add email', new_email_path(site_id: @site.id)%>
+  <%= link_to 'Add email', new_email_path(site_id: @site.id), class: 'btn btn-primary'%>
 
 <table style="width:100%">
   <tr>
     <th>Email</th>
     <th>Write</th>
+    <th>Edit</th>
     <th>Destroy</th>
   </tr>
   <% @site.emails.each do |email| %>
       <tr>
         <td><%= link_to email.email, email %></td>
         <td></td>
+        <td><%= link_to 'Edit', edit_email_path(email) %></td>
         <td><%= link_to 'Destroy', email, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
   <% end %>
 </table>
 
-<%= link_to 'Edit', edit_site_path(@site) %> |
-<%= link_to 'Back', user_path(@site.user_id)%>
+<%= link_to 'Back', user_path(@site.user_id), class: 'btn btn-primary'%>

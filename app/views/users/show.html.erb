@@ -10,20 +10,17 @@
   }
 </style>
 
-  <strong>Name:</strong>
-  <%= @user.name %>
+  <h1>My account</h1>
 
-  <strong>Password:</strong>
-  <%= @user.password %>
+  <h3>Name:  <%= @user.name %></h3>
+  <h3>Email:  <%= @user.email %></h3>
 
-  <strong>Email:</strong>
-  <%= @user.email %>
-
-<%= link_to 'Log out', destroy_user_session_path, :method => :delete %>
+<%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-primary' %>
+<%= link_to 'Log out', destroy_user_session_path, :method => :delete, class: 'btn btn-primary' %>
 
 <hr>
 
-  <%= link_to 'Add site', new_site_path(user_id: @user.id)%>
+  <%= link_to 'Add site', new_site_path(user_id: @user.id), class: 'btn btn-primary'%>
 
 
 <table style="width:100%">
@@ -31,22 +28,17 @@
     <th>name</th>
     <th>url</th>
     <th>email</th>
-    <th>password</th>
-    <th>Show</th>
+    <th>Edit</th>
     <th>Destroy</th>
   </tr>
   <% @user.sites.each do |site| %>
         <tr>
-          <th><%= site.name %></th>
-          <th><%= site.url %></th>
-          <th><%= site.email %></th>
-          <th><%= site.password %></th>
-          <th><%= link_to 'Show', site %></th>
-          <th><%= link_to 'Destroy', site, method: :delete, data: { confirm: 'Are you sure?' } %></th>
+          <td><%= link_to site.name, site %></td>
+          <td><%= link_to site.url, site.url %></td>
+          <td><%= site.email %></td>
+          <td><%= link_to 'Edit', edit_site_path(site) %></td>
+          <td><%= link_to 'Destroy', site, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
   <% end %>
 
 </table>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>

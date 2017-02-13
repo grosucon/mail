@@ -1,28 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<div>
-<p>
-  <strong>Email:</strong>
-  <%= @email.email %>
-</p>
+<style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 15px;
+  }
+</style>
 
-  <%= link_to 'Add message', new_message_path(email_id: @email.id)%>
+<%= link_to 'Log out', destroy_user_session_path, :method => :delete, class: 'btn btn-primary' %>
+  <h1>Messages_of_mail</h1>
+  <h3>Email:  <%= @email.email %></h3>
+<hr>
 
-</div>
+  <%= link_to 'Add message', new_message_path(email_id: @email.id), class: 'btn btn-primary'%>
 
-<ul>
+<table style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>Phone</th>
+    <th>Subject</th>
+    <th>Message</th>
+    <th>Edit</th>
+    <th>Destroy</th>
+  </tr>
   <% @email.messages.each do |message| %>
-      <li>
-        <%= message.subject %>
-        <%= message.phone %>
-        <%= message.message %>
-        <%= message.name %>
-        <%= message.surname %>
-        <td><%= link_to 'Show', message %></td>
+      <tr>
+        <td><%= message.name %></td>
+        <td><%= message.surname %></td>
+        <td><%= message.phone %></td>
+        <td><%= message.subject %></td>
+        <td><%= message.message %></td>
+        <td><%= link_to 'Edit', edit_message_path(message) %></td>
         <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </li>
+      </tr>
   <% end %>
-</ul>
+</table>
 
-<%= link_to 'Edit', edit_email_path(@email) %> |
-<%= link_to 'Back', site_path(@email.site_id)%>
+<%= link_to 'Back', site_path(@email.site_id), class: 'btn btn-primary'%>

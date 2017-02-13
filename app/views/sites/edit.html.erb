@@ -2,5 +2,4 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @site %> |
-<%= link_to 'Back', site_path %>
+<%= link_to 'Back', user_path(@site.user_id), class: 'btn btn-primary' %>

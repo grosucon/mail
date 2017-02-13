@@ -25,5 +25,5 @@
   <%= @message.surname %>
 </p>
 
-<%= link_to 'Edit', edit_message_path(@message) %>
-<%= link_to 'Back', email_path(@message.email_id)%>
+<%= link_to 'Edit', edit_message_path(@message), class: 'btn btn-primary' %>
+<%= link_to 'Back', email_path(@message.email_id), class: 'btn btn-primary'%>

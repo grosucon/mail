@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def admin_permission
     if current_user.user?
-      redirect_to users_path(current_user)
+      redirect_to user_path(current_user)
     end
   end
 end

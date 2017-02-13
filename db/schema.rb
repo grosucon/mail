@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170212175408) do
+ActiveRecord::Schema.define(version: 20170213114338) do
+
+  create_table "adapters", force: :cascade do |t|
+    t.string   "adress"
+    t.string   "port"
+    t.string   "domain"
+    t.string   "user_name"
+    t.string   "password"
+    t.integer  "site_id"
+    t.integer  "adapter_type", default: 0
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "emails", force: :cascade do |t|
     t.string   "email"

@@ -31,9 +31,11 @@ class SitesController < ApplicationController
   def create
     @site = Site.new(site_params)
 
+
     respond_to do |format|
       if @site.save
-        format.html { redirect_to @site, notice: 'Site was successfully created.' }
+        Adapter.create(adapter_type: params[:Adapter], site: @site)
+        format.html { redirect_to user_path(@site.user_id), notice: 'Site was successfully created.' }
         format.json { render :show, status: :created, location: @site }
       else
         format.html { render :new }
@@ -47,7 +49,7 @@ class SitesController < ApplicationController
   def update
     respond_to do |format|
       if @site.update(site_params)
-        format.html { redirect_to @site, notice: 'Site was successfully updated.' }
+        format.html { redirect_to user_path(@site.user_id), notice: 'Site was successfully updated.' }
         format.json { render :show, status: :ok, location: @site }
       else
         format.html { render :edit }
@@ -61,12 +63,14 @@ class SitesController < ApplicationController
   def destroy
     @site.destroy
     respond_to do |format|
-      format.html { redirect_to sites_url, notice: 'Site was successfully destroyed.' }
+      format.html { redirect_to user_path(@site.user_id), notice: 'Site was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+
+
     # Use callbacks to share common setup or constraints between actions.
     def set_site
       @site = Site.find(params[:id])
