@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Adress:</strong>
+  <%= @adapter.adress %>
+</p>
+
+<p>
+  <strong>Port:</strong>
+  <%= @adapter.port %>
+</p>
+
+<p>
+  <strong>Domain:</strong>
+  <%= @adapter.domain %>
+</p>
+
+<p>
+  <strong>User name:</strong>
+  <%= @adapter.user_name %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @adapter.password %>
+</p>
+
+<%= link_to 'Edit', edit_adapter_path(@adapter) %> |
+<%= link_to 'Back', adapters_path %>

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Adapters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Adress</th>
+      <th>Port</th>
+      <th>Domain</th>
+      <th>User name</th>
+      <th>Password</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @adapters.each do |adapter| %>
+      <tr>
+        <td><%= adapter.adress %></td>
+        <td><%= adapter.port %></td>
+        <td><%= adapter.domain %></td>
+        <td><%= adapter.user_name %></td>
+        <td><%= adapter.password %></td>
+        <td><%= link_to 'Show', adapter %></td>
+        <td><%= link_to 'Edit', edit_adapter_path(adapter) %></td>
+        <td><%= link_to 'Destroy', adapter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Adapter', new_adapter_path %>
